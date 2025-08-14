@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ganpati AR Decoration</title>
+    <link rel="stylesheet" href="style.css" />
+    
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  </head>
+  
+  <body>
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      arjs="sourceType: webcam; trackingMethod: best;"
+      renderer="logarithmicDepthBuffer: true;"
+    >
+      <a-camera gps-new-camera="gpsMinAccuracy:3;"></a-camera>
+
+      <a-nft
+        type="nft"
+        url="./models/my-marker.png"
+        smooth="true"
+        smooth-count="10"
+        smooth-tolerance="0.01"
+        smooth-threshold="5"
+        raycaster="objects: .clickable"
+        cursor="fuse: false; rayOrigin: mouse;"
+      >
+        <a-entity
+          gltf-model="./models/ganesha.gltf"
+          scale="0.05 0.05 0.05"
+          position="0 0 0"
+          rotation="-90 0 0"
+        >
+        </a-entity>
+
+        <a-entity gltf-model="./models/1.gltf" scale="0.05 0.05 0.05" position="0.5 0 0.5" rotation="-90 0 0"></a-entity>
+        <a-entity gltf-model="./models/2.gltf" scale="0.05 0.05 0.05" position="-0.5 0 0.5" rotation="-90 0 0"></a-entity>
+        <a-entity gltf-model="./models/3.gltf" scale="0.05 0.05 0.05" position="0.5 0 -0.5" rotation="-90 0 0"></a-entity>
+        <a-entity gltf-model="./models/4.gltf" scale="0.05 0.05 0.05" position="-0.5 0 -0.5" rotation="-90 0 0"></a-entity>
+        <a-entity gltf-model="./models/5.gltf" scale="0.05 0.05 0.05" position="1 0 0" rotation="-90 0 0"></a-entity>
+        <a-entity gltf-model="./models/6.gltf" scale="0.05 0.05 0.05" position="-1 0 0" rotation="-90 0 0"></a-entity>
+      </a-nft>
+
+      <a-light type="ambient" color="#fff"></a-light>
+      
+      <a-text
+        id="marker-message"
+        value="Point your camera at the marker image."
+        color="red"
+        position="-1.5 0 -5"
+        scale="2 2 2"
+      ></a-text>
+    </a-scene>
+
+    <script>
+      // Get the marker component and the message element
+      const marker = document.querySelector('a-nft');
+      const message = document.querySelector('#marker-message');
+
+      // Hide the message when the marker is found
+      marker.addEventListener('markerFound', function() {
+        message.setAttribute('visible', 'false');
+      });
+      
+      // Show the message when the marker is lost
+      marker.addEventListener('markerLost', function() {
+        message.setAttribute('visible', 'true');
+      });
+    </script>
+  </body>
+</html>
