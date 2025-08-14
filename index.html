@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css" />
     
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
   </head>
   
   <body>
@@ -14,11 +14,11 @@
       arjs="sourceType: webcam; trackingMethod: best;"
       renderer="logarithmicDepthBuffer: true;"
     >
-      <a-camera gps-new-camera="gpsMinAccuracy:3;"></a-camera>
+      <a-entity camera></a-entity>
 
       <a-nft
         type="nft"
-        url="./models/new-marker.patt"
+        url="./models/pattern-marker.patt"
         smooth="true"
         smooth-count="10"
         smooth-tolerance="0.01"
@@ -46,8 +46,8 @@
       
       <a-text
         id="marker-message"
-        value="Point your camera at the marker image."
-        color="red"
+        value="Point here."
+        color="black"
         position="-1.5 0 -5"
         scale="2 2 2"
       ></a-text>
